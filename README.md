@@ -1,6 +1,6 @@
 # ci-test
 
-Testing CI.
+General CI testing. Includes Claude skills, Git hooks and GitHub actions.
 
 # License
 
