@@ -1,0 +1,18 @@
+#!/bin/sh
+
+COMMIT_MSG_SUCCESS="$(printf '\033[0;32m[COMMIT_MSG]\033[0m')"
+COMMIT_MSG_ERROR="$(printf '\033[0;31m[COMMIT_MSG]\033[0m')"
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(head -1 "$COMMIT_MSG_FILE")
+
+# if ! echo "$COMMIT_MSG" | grep -qE "^[a-z0-9]+: ([a-z0-9]+: )?\S.*"; then
+#     echo "$COMMIT_MSG_ERROR message does not adhere to convention"
+#     echo "$COMMIT_MSG_ERROR   > '$COMMIT_MSG'"
+#     echo "$COMMIT_MSG_ERROR expected: scope: sub-scope (optional): description"
+#     echo "$COMMIT_MSG_ERROR   > e.g. i2c: virtio: mark device ready before registering adapter"
+#     exit 1
+# else
+#     echo "$COMMIT_MSG_SUCCESS message adheres to convention"
+#     echo "$COMMIT_MSG_SUCCESS   > '$COMMIT_MSG'"
+# fi

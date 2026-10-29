@@ -1,0 +1,36 @@
+name: C Static Analysis
+
+on:
+  pull_request:
+
+jobs:
+  cppcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: dependencies
+        run: sudo apt-get install -y cppcheck
+
+      - name: run
+        run: |
+          cppcheck \
+            --error-exitcode=1 \
+            --enable=warning,performance,portability \
+            --suppress=missingIncludeSystem \
+            --inline-suppr \
+            src/
+
+  scan-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: dependencies
+        run: sudo apt-get install -y clang-tools cmake
+
+      - name: run
+        run: |
+          mkdir build
+          scan-build cmake -S . -B build
+          scan-build --status-bugs make -C build

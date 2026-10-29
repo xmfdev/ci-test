@@ -1,0 +1,17 @@
+#!/bin/sh
+
+PRE_PUSH_SUCCESS="$(printf '\033[0;32m[PRE_PUSH]\033[0m')"
+PRE_PUSH_ERROR="$(printf '\033[0;31m[PRE_PUSH]\033[0m')"
+
+BRANCH=$(git symbolic-ref HEAD | sed "s|refs/heads/||")
+
+# if ! echo "$BRANCH" | grep -qE "^[a-z0-9-]+/[a-z0-9-]+$"; then
+#     echo "$PRE_PUSH_ERROR branch does not adhere to naming convention"
+#     echo "$PRE_PUSH_ERROR   > '$BRANCH'"
+#     echo "$PRE_PUSH_ERROR expected: scope/short-description"
+#     echo "$PRE_PUSH_ERROR   > e.g. auth/fix-token-expiry"
+    # exit 1
+# else
+#     echo "$PRE_PUSH_SUCCESS branch adheres to naming convention"
+#     echo "$PRE_PUSH_SUCCESS   > '$BRANCH'"
+# fi
